@@ -1,0 +1,91 @@
+@(title:String = "")(body: => Html)
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>@title</title>
+<link rel="stylesheet" media="screen" href="@asset("public/stylesheets/main.css")">
+<link rel="shortcut icon" type="image/png" href="@asset("public/images/favicon.png")">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport"
+	content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+<link rel="stylesheet" type="text/css" media="screen"
+	href="/public/stylesheets/vanilla/css/main.css">
+<script src="/public/javascripts/modernizr.js"
+	type="text/javascript" charset="utf-8"></script>
+<script src="/public/javascripts/jquery.js"
+	type="text/javascript" charset="utf-8"></script>
+<script src="/public/javascripts/jquery-ui.js"
+	type="text/javascript" charset="utf-8"></script>
+<style>
+.site {
+	margin: 0 auto;
+	max-width: 800px;
+}
+
+.site>header,.site>footer {
+	clear: both;
+}
+
+.site>section {
+	float: left;
+	width: 66.66%;
+	overflow: hidden;
+}
+
+.site>aside {
+	float: left;
+	width: 33.33%;
+	overflow: hidden;
+}
+
+header {
+	font-size: 30px
+}
+
+ul {
+	margin: 20px;
+	margin-left: 0px;
+	padding-left: 0px
+}
+
+li {
+	list-style: none;
+}
+
+input[type="checkbox"] {
+	margin-right: 10px;
+}
+
+.box {
+	margin: 0 0 1em;
+	padding: 1em 24px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	background-color: white;
+	-moz-box-shadow: 0 1px 1px rgba(34, 34, 34, 0.19999999999999996);
+	-webkit-box-shadow: 0 1px 1px rgba(34, 34, 34, 0.19999999999999996);
+	box-shadow: 0 1px 1px rgba(34, 34, 34, 0.19999999999999996);
+}
+
+small {
+	font-size: 9px;
+	padding-left: 10px;
+}
+</style>
+</head>
+<body>
+
+	<div class="site">
+		<header>My ToDo List</header>
+		<section class="box">
+			<article>@body</article>
+		</section>
+		<footer>Copyright © 2011, Lunatech Research</footer>
+	</div>
+</body>
+</html>

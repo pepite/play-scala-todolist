@@ -1,0 +1,60 @@
+@(items:Seq[models.Item])
+
+@main("TODO List") {
+    
+       	<input id="name" type="text" name="name" value=""/><input type="submit" onclick="create($('#name').val());" value="Create"/>
+		<ul id="list">
+			@items.map { item =>
+			<li>
+	 		@form(controllers.Application.update(item)) { 
+		
+				<input type="hidden" name="item.id" value="@item.id"/>
+				<input type="hidden" name="item.name" value="@item.name"/>
+				<input id="@item.id" type="hidden" name="item.isDone" value="@item.isDone"/>
+				<input type="checkbox" onclick="update(@item.id)" @(if (item.isDone) "checked")/> 
+				@item.name <small><a href="javascript:del(@item.id)"> delete</a></small>
+			}
+			</li>
+			}
+		</ul>
+	</form>
+	
+	<script>
+		function create(name) {
+			$.ajax({
+			  type: "POST",
+		      url: "/items/create",
+			  data: {"name": name },
+			  success: function( data ) {
+				 	var ul = $(data).find("#list");
+				 	$("#list").replaceWith(ul);
+				 	$("#name").val("");
+			  }
+			});
+		}
+	
+		function update(id, val) {
+			var val = $("#" + id).val() == "false";
+			$("#" + id).val(val);
+			var form = $("#" + id).parent("form");
+			var name = form.find("input[name='item.name']").val();
+			
+			$.ajax({
+				  type: "POST",
+			      url: "/items/update",
+				  data: {"item.id": id, "item.name": name, "item.isDone": val }
+				});
+			//form.submit();
+		}
+		
+		function del(id) {
+			$.ajax({
+				  type: "DELETE",
+			      url: "/items/delete",
+				  data: {"id": id }
+				});
+			var li = $("#" + id).parent("form").parent(); 
+			li.fadeOut(1000);
+		}
+	</script>
+}
