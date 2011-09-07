@@ -2,21 +2,22 @@
 
 @main("TODO List") {
     
-       	<input id="name" type="text" name="name" value=""/><input type="submit" onclick="create($('#name').val());" value="Create"/>
-		<ul id="list">
+    	<section class="box">
+       		<input id="name" type="text" name="name" value=""/><input type="submit" onclick="create($('#name').val());" value="Create"/>
+		</section>       	 
+       	<section id="list" class="box">
 			@items.map { item =>
-			<li>
+			<p><strong>
 	 		@form(controllers.Application.update(item)) { 
 		
 				<input type="hidden" name="item.id" value="@item.id"/>
 				<input type="hidden" name="item.name" value="@item.name"/>
 				<input id="@item.id" type="hidden" name="item.isDone" value="@item.isDone"/>
 				<input type="checkbox" onclick="update(@item.id)" @(if (item.isDone) "checked")/> 
-				@item.name <small><a href="javascript:del(@item.id)"> delete</a></small>
+				@item.name </strong><small><a href="javascript:del(@item.id)"> delete</a></small>
 			}
-			</li>
 			}
-		</ul>
+		</section>
 	</form>
 	
 	<script>
@@ -36,7 +37,7 @@
 		function update(id, val) {
 			var val = $("#" + id).val() == "false";
 			$("#" + id).val(val);
-			var form = $("#" + id).parent("form");
+			var form = $("#" + id).parent().parent("form");
 			var name = form.find("input[name='item.name']").val();
 			
 			$.ajax({
@@ -53,8 +54,8 @@
 			      url: "/items/delete",
 				  data: {"id": id }
 				});
-			var li = $("#" + id).parent("form").parent(); 
-			li.fadeOut(1000);
+			var p = $("#" + id).parent().parent("form"); 
+			p.fadeOut(1000);
 		}
 	</script>
 }

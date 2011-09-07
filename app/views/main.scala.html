@@ -43,24 +43,13 @@ header {
 	font-size: 30px
 }
 
-ul {
-	margin: 20px;
-	margin-left: 0px;
-	padding-left: 0px
-}
-
-li {
-	list-style: none;
-	font-size: 150%;
-	font-weight: bold;
-}
-
-li input {
-	margin-top: 13px;
+p {
+	margin: 5px;
 }
 
 input[type="checkbox"] {
 	margin-right: 10px;
+	margin-top: 13px;
 }
 
 .box {
@@ -82,15 +71,21 @@ small {
 	font-size: 9px;
 	padding-left: 10px;
 }
+
+button { float:right }
+p { margin-bottom:1em; }
+input[type=text], strong { font-size:150%; font-weight:normal; }
 </style>
 </head>
 <body>
 
 	<div class="site">
-		<header>My ToDo List</header>
-		<section class="box">
-			<article>@body</article>
-		</section>
+		<article class="content">
+
+        <hgroup>
+                <h1>ToDo List</h1>
+        </hgroup>
+		<class="content">@body</article>
 		<footer>Copyright © 2011, Lunatech Research</footer>
 	</div>
 </body>
